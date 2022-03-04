@@ -1,17 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
+import { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { TextInput } from 'react-native';
 
 export default function App() {
+  const [valor1, setValor1] = useState();
+  const [valor2, setValor2] = useState();
+  const [resultado, setResultado] = useState();
+
   return (
     <View style={styles.container}>
        <View style={styles.bloco}>
           <Text style={styles.texto}>Valor 1</Text>
-          <TextInput style={styles.input} placeholder={'Digite o valor 1'}/>
+          <TextInput style={styles.input} value={valor1} onChangeText={(texto)=>setValor1(texto)} placeholder={'Digite o valor 1'}/>
        </View>
        <View style={styles.bloco}>
           <Text style={styles.texto}>Valor 2</Text>
-          <TextInput style={styles.input} placeholder={'Digite o valor 2'}/>
+          <TextInput style={styles.input} value={valor2} onChangeText={(texto)=>setValor2(texto)} placeholder={'Digite o valor 2'}/>
           <TouchableOpacity style={styles.botao}>
          <Text>Entrar</Text>
        </TouchableOpacity>
