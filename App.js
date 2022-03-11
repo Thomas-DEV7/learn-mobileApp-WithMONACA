@@ -1,29 +1,82 @@
-import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { TextInput } from 'react-native';
+import { React, useState } from 'react';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
 
 export default function App() {
   const [valor1, setValor1] = useState();
   const [valor2, setValor2] = useState();
-  const [resultado, setResultado] = useState();
+  const [resultado, setResultado] = useState(0);
+
+  function somar(){
+    setResultado(parseFloat(valor1) + parseFloat(valor2));
+  }
+  function subtrair(){
+    setResultado(parseFloat(valor1) - parseFloat(valor2));
+  }
+  function multiplicar(){
+    setResultado(parseFloat(valor1) * parseFloat(valor2));
+  }
+  function divisao(){
+    setResultado(parseFloat(valor1) / parseFloat(valor2));
+  }
 
   return (
     <View style={styles.container}>
-       <View style={styles.bloco}>
-          <Text style={styles.texto}>Valor 1</Text>
-          <TextInput style={styles.input} value={valor1} onChangeText={(texto)=>setValor1(texto)} placeholder={'Digite o valor 1'}/>
-       </View>
-       <View style={styles.bloco}>
-          <Text style={styles.texto}>Valor 2</Text>
-          <TextInput style={styles.input} value={valor2} onChangeText={(texto)=>setValor2(texto)} placeholder={'Digite o valor 2'}/>
-          <TouchableOpacity style={styles.botao}>
-         <Text>Entrar</Text>
-       </TouchableOpacity>
-       </View>
-       
-      
-      <StatusBar style="auto" />
+      <Text style={styles.texto}>Adolpho's Smart Calculator</Text>
+      <Image
+        style={styles.logo}
+        source={{
+          uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8cY64IC1j6Ldim8oMmahvNvIgLWkQpB6aDQ&usqp=CAU',
+        }}
+      />
+      <View style={styles.bloco}>
+        <Text style={styles.textoBloco}>Valor 1</Text>
+        <TextInput 
+          style={styles.input}
+          keyboardType="numeric"
+          placeholder="Insira o primeiro valor"
+          value={valor1}
+          onChangeText={(texto)=>setValor1(texto)}
+        />
+      </View>
+      <View style={styles.bloco}>
+        <Text style={styles.textoBloco}>Valor 2</Text>
+        <TextInput 
+          style={styles.input}
+          keyboardType="numeric"
+          placeholder="Insira o segundo valor"
+          value={valor2}
+          onChangeText={(texto)=>setValor2(texto)}
+        />
+      </View>
+      <View style={styles.bloco}>
+        <TouchableOpacity 
+          style={styles.botao}
+          onPress={somar}
+        >
+            <Text style={styles.textoBotao}>Somar</Text>
+        </TouchableOpacity>
+        <TouchableOpacity 
+          style={styles.botao}
+          onPress={subtrair}
+        >
+            <Text style={styles.textoBotao}>Subtrair</Text>
+        </TouchableOpacity>
+        <TouchableOpacity 
+          style={styles.botao}
+          onPress={multiplicar}
+        >
+            <Text style={styles.textoBotao}>Multiplicar</Text>
+        </TouchableOpacity>
+        <TouchableOpacity 
+          style={styles.botao}
+          onPress={divisao}
+        >
+            <Text style={styles.textoBotao}>Divisão</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.bloco}>
+        <Text style={styles.textoBloco}>Resultado: {resultado}</Text>
+      </View>
     </View>
   );
 }
@@ -31,30 +84,44 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'cyan',
     alignItems: 'center',
     justifyContent: 'center',
-    fontFamily: 'arial'
+
   },
-  bloco:{
-    textAlign: 'center',
-    fontFamily: 'arial',
-  },
-  input: {
-    color: '#000',
-    fontSize: 25,
-    width: '100%',
-    borderColor: '#004',
-    borderWidth: 1,
-    borderRadius: 10,
-    marginTop:30
+  textoBloco:{
+    fontSize:20,
   },
   texto:{
-    fontSize:20
+    color:'#000',
+    fontSize:30
+  },
+  input:{
+    borderColor:'#000',
+    borderWidth:1,
+    borderRadius:20,
+    textAlign: 'center',
+    fontSize:30,
+    width:'80%'
+  },
+  bloco:{
+    width:'100%',
+    alignItems:'center',
+    marginTop:30
   },
   botao:{
-    width:'80%', 
-    backgroundColor: '#400'
-    
+    backgroundColor:'#f81',
+    width:'80%',
+    textAlign:'center',
+    borderRadius: 20,
+    marginTop: 10
+  },
+  textoBotao:{
+    color:"#fff",
+    fontSize:30
+  }, 
+  logo:{
+    width:70,
+    height:70
   }
 });
