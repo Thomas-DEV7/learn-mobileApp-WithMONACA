@@ -6,6 +6,7 @@ export default function App() {
   const [valor2, setValor2] = useState();
   const [resultado, setResultado] = useState(0);
 
+
   function somar(){
     setResultado(parseFloat(valor1) + parseFloat(valor2));
   }
@@ -17,6 +18,7 @@ export default function App() {
   }
   function divisao(){
     setResultado(parseFloat(valor1) / parseFloat(valor2));
+
   }
 
   return (
@@ -33,7 +35,7 @@ export default function App() {
         <TextInput 
           style={styles.input}
           keyboardType="numeric"
-          placeholder="Insira o primeiro valor"
+          placeholder="Insira o primeiro valor: "
           value={valor1}
           onChangeText={(texto)=>setValor1(texto)}
         />
